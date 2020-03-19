@@ -87,7 +87,7 @@ public class Receipt implements Serializable {
 
     @Override
     public String toString() {
-        String result = "#########################################" + '\n' + "RECEIPT ID: "+ Long.toString(id) + " " + DateTimeFormatter.ISO_DATE_TIME.format(dateTime) + '\n' +
+        String result = "\n#########################################" + '\n' + "RECEIPT ID: "+ Long.toString(id) + " " + DateTimeFormatter.ISO_DATE_TIME.format(dateTime) + '\n' +
                 taxpayerName + " " + taxpayerID + " " + address + '\n' + '\n' + "COMMODITIES:";
 
         if(commodityList != null) {

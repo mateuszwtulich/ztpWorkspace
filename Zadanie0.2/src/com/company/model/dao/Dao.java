@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public interface Dao<T> {
 
-    static final String filepath="E:\\repository\\ZTP\\Zadanie0.2\\test";
+    static final String filepath="E:\\repository\\ZTP\\ztpWorkspace\\Zadanie0.2\\test";
 
     Optional<T> get(long id);
     List<T> getAll();

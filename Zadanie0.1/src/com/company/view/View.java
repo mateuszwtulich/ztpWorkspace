@@ -31,16 +31,17 @@ public class View {
     }
 
     private void displayMenu(){
-        System.out.println();
+        System.out.println("\n----------------MENU----------------");
         System.out.println("Show all receipts [SR]");
         System.out.println("Add receipt [AR]");
         System.out.println("Update receipt [UR]");
         System.out.println("Delete receipt [DR]");
-        System.out.println("Show all commodities [SC]");
+        System.out.println("\nShow all commodities [SC]");
         System.out.println("Add commodity to receipt [AC]");
         System.out.println("Update commodity from receipt [UC]");
         System.out.println("Delete commodity [DC]");
-        System.out.println("Exit [EXIT]");
+        System.out.println("\nExit [EXIT]");
+        System.out.println("----------------MENU----------------");
         System.out.print("Choose an option: ");
     }
 
