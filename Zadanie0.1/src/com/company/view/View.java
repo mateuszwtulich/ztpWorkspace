@@ -58,12 +58,11 @@ public class View {
         controller.generateReceipt(getReceiptParams());
     }
 
-    public void updatingReceipt(){
+    public void updatingReceipt() throws Exception{
         Long id = selectReceipt();
         String[] params = getReceiptParams();
         controller.modifyReceipt(id, params);
     }
-
     private String[] getReceiptParams(){
         System.out.println();
         Scanner scan = new Scanner(System.in);
@@ -81,13 +80,13 @@ public class View {
         return params;
     }
 
-    public void deletingReceipt(){
+    public void deletingReceipt() throws Exception{
         controller.removeReceipt(selectReceipt());
         System.out.println();
         System.out.println("Receipt has been deleted!");
     }
 
-    public void showingCommodities(){
+    public void showingCommodities() throws Exception{
         Long receiptId = selectReceipt();
         List<Commodity> commodities = model.getAllCommodities(receiptId);
 
@@ -101,32 +100,40 @@ public class View {
         }
     }
 
-    private Long selectReceipt(){
+    private Long selectReceipt() throws Exception{
+        Long id = 0L;
         showingReceipts();
         System.out.println();
         System.out.print("Enter receipt id: ");
         Scanner scan = new Scanner(System.in);
-        Long id = Long.parseLong(scan.nextLine());
-        boolean exists = model.getAllReceipts().stream().anyMatch( receipt -> receipt.getId() == id);
-
         try {
-            if (!exists) {
+            id = Long.parseLong(scan.nextLine());
+            final Long tmpId = id;
+            boolean exists = model.getAllReceipts().stream().anyMatch(receipt -> receipt.getId() == tmpId);
+
+            try {
+                if (!exists) {
+                    throw new IllegalArgumentException();
+                }
+            } catch (Exception ex) {
+                System.out.println("It is not an existing receipt id!");
                 throw new IllegalArgumentException();
             }
-        }catch(Exception ex){
-            System.out.println("It is not an existing receipt id!");
+        }catch (Exception ex) {
+            System.out.println("It is not correct receipt id format!");
+            throw new Exception();
         }
         return id;
     }
 
-    public void addingCommodity(){
+    public void addingCommodity() throws Exception{
         Long receiptId = selectReceipt();
         String[] params = getCommodityParams();
 
         System.out.println(controller.addCommodityToReceipt(receiptId, params).toString());
     }
 
-    public void updatingCommodity(){
+    public void updatingCommodity() throws Exception{
         Long receiptId = selectReceipt();
         Long commodityId = selectCommodity(receiptId);
         String[] params = getCommodityParams();
@@ -155,29 +162,38 @@ public class View {
         return params;
     }
 
-    public void deletingCommodity(){
+    public void deletingCommodity() throws Exception{
         Long receiptId = selectReceipt();
         controller.removeCommodityFromReceipt(receiptId, selectCommodity(receiptId));
         System.out.println();
         System.out.println("Commodity has been deleted!");
     }
 
-    private Long selectCommodity(Long receiptId){
+    private Long selectCommodity(Long receiptId) throws Exception {
+        Long id = 0L;
         System.out.println();
         System.out.print("Enter commodity id: ");
         Scanner scan = new Scanner(System.in);
-        Long id = Long.parseLong(scan.nextLine());
-        boolean exists = model.getAllCommodities(receiptId).stream().anyMatch( commodity -> commodity.getId() == id);
-
         try {
-            if (!exists) {
+            id = Long.parseLong(scan.nextLine());
+            final Long tmpId = id;
+            boolean exists = model.getAllCommodities(receiptId).stream().anyMatch( commodity -> commodity.getId() == tmpId);
+
+            try {
+                if (!exists) {
+                    throw new IllegalArgumentException();
+                }
+            }catch(Exception ex){
+                System.out.println("It is not an existing commodity id!");
                 throw new IllegalArgumentException();
             }
-        }catch(Exception ex){
-            System.out.println("It is not an existing commodity id!");
+        }catch (Exception ex) {
+            System.out.println("It is not correct receipt id format!");
+            throw new Exception();
         }
         return id;
     }
+
 
     public void exit(){
         this.isMenuEnabled = false;

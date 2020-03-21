@@ -53,7 +53,7 @@ public class Controller implements IController {
     }
 
     @Override
-    public Commodity addCommodityToReceipt(Long receiptId, String[] params) {
+    public Commodity addCommodityToReceipt(Long receiptId, String[] params) throws Exception{
         Commodity commodity = new Commodity();
         try {
             commodity.setName(params[0]);
@@ -61,13 +61,13 @@ public class Controller implements IController {
             commodity.setValue(Float.parseFloat(params[2]));
             commodity.setTaxRate(Float.parseFloat(params[3]));
         }catch(Exception ex){
-            System.out.println("Data format is incorrect!");
+            throw new Exception();
         }
         return model.createCommodity(receiptId, commodity);
     }
 
     @Override
-    public Commodity modifyCommodityInReceipt(Long receiptId, Long commodityId, String[] params) {
+    public Commodity modifyCommodityInReceipt(Long receiptId, Long commodityId, String[] params) throws Exception{
         Commodity commodity = model.getCommodity(receiptId, commodityId);
         try {
             commodity.setName(params[0]);
@@ -75,7 +75,7 @@ public class Controller implements IController {
             commodity.setValue(Float.parseFloat(params[2]));
             commodity.setTaxRate(Float.parseFloat(params[3]));
         }catch(Exception ex){
-            System.out.println("Data format is incorrect!");
+            throw new Exception();
         }
         return model.updateCommodity(receiptId, commodity);
     }
@@ -97,59 +97,65 @@ public class Controller implements IController {
             option = "DS";
         }
 
-        switch (option){
-            case "SR": {
-                view.showingReceipts();
-                break;
-            }
-            case "AR": {
-                view.addingReceipt();
-                break;
-            }
-            case "UR": {
-                view.updatingReceipt();
-                break;
-            }
-            case "DR": {
-                view.deletingReceipt();
-                break;
-            }
-            case "SC": {
-                view.showingCommodities();
-                break;
-            }
-            case "AC": {
-                view.addingCommodity();
-                break;
-            }
-            case "UC": {
-                view.updatingCommodity();
-                break;
-            }
-            case "DC": {
-                view.deletingCommodity();
-                break;
-            }
-            case "DS": {
-                view.showingReceipts();
-                break;
-            }
-            case "EXIT": {
-                view.exit();
-                if(view.getDataSource() == FILE_DATA_SOURCE){
-                    switchDataSourceToFile();
+        try {
+            switch (option) {
+                case "SR": {
+                    view.showingReceipts();
+                    break;
                 }
-                else if (view.getDataSource() == DB_DATA_SOURCE){
-                    switchDataSourceToDb();
+                case "AR": {
+                    view.addingReceipt();
+                    break;
                 }
+                case "UR": {
+                    view.updatingReceipt();
+                    break;
+                }
+                case "DR": {
+                    view.deletingReceipt();
+                    break;
+                }
+                case "SC": {
+                    view.showingCommodities();
+                    break;
+                }
+                case "AC": {
+                    view.addingCommodity();
+                    break;
+                }
+                case "UC": {
+                    view.updatingCommodity();
+                    break;
+                }
+                case "DC": {
+                    view.deletingCommodity();
+                    break;
+                }
+                case "DS": {
+                    view.showingReceipts();
+                    break;
+                }
+                case "EXIT": {
+                    view.exit();
+                    if (view.getDataSource() == FILE_DATA_SOURCE) {
+                        switchDataSourceToFile();
+                    } else if (view.getDataSource() == DB_DATA_SOURCE) {
+                        switchDataSourceToDb();
+                    }
 
-                DbConfig.disconnectFromDb();
-                break;
-            } default: {
-                System.out.println();
-                System.out.println("Not an option. Try again!");
-                break;
+                    DbConfig.disconnectFromDb();
+                    break;
+                }
+                default: {
+                    System.out.println();
+                    System.out.println("Not an option. Try again!");
+                    break;
+                }
             }
+        }catch (Exception ex){
+            System.out.println("\n//////////////////////////////////");
+            System.out.println("Incorrect argument!");
+            System.out.println("///////////////////////////////////");
         }
     }
 

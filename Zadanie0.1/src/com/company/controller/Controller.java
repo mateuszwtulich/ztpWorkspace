@@ -9,7 +9,7 @@ public class Controller implements IController {
     ISalesModel model;
     View view;
 
-    public Controller(ISalesModel model){
+    public Controller(ISalesModel model) {
         this.model = model;
         view = new View(model, this);
         view.createView();
@@ -42,22 +42,30 @@ public class Controller implements IController {
     }
 
     @Override
-    public Commodity addCommodityToReceipt(Long receiptId, String[] params) {
+    public Commodity addCommodityToReceipt(Long receiptId, String[] params) throws Exception {
         Commodity commodity = new Commodity();
-        commodity.setName(params[0]);
-        commodity.setAmount(Integer.parseInt(params[1]));
-        commodity.setValue(Float.parseFloat(params[2]));
-        commodity.setTaxRate(Float.parseFloat(params[3]));
+        try {
+            commodity.setName(params[0]);
+            commodity.setAmount(Integer.parseInt(params[1]));
+            commodity.setValue(Float.parseFloat(params[2]));
+            commodity.setTaxRate(Float.parseFloat(params[3]));
+        } catch (Exception ex) {
+            throw new Exception();
+        }
         return model.createCommodity(receiptId, commodity);
     }
 
     @Override
-    public Commodity modifyCommodityInReceipt(Long receiptId, Long commodityId, String[] params) {
+    public Commodity modifyCommodityInReceipt(Long receiptId, Long commodityId, String[] params) throws Exception {
         Commodity commodity = model.getCommodity(receiptId, commodityId);
-        commodity.setName(params[0]);
-        commodity.setAmount(Integer.parseInt(params[1]));
-        commodity.setValue(Float.parseFloat(params[2]));
-        commodity.setTaxRate(Float.parseFloat(params[3]));
+        try {
+            commodity.setName(params[0]);
+            commodity.setAmount(Integer.parseInt(params[1]));
+            commodity.setValue(Float.parseFloat(params[2]));
+            commodity.setTaxRate(Float.parseFloat(params[3]));
+        } catch (Exception ex) {
+            throw new Exception();
+        }
         return model.updateCommodity(receiptId, commodity);
     }
 
@@ -68,47 +76,55 @@ public class Controller implements IController {
 
     @Override
     public void selectOption(String option) {
-        switch (option){
-            case "SR": {
-                view.showingReceipts();
-                break;
+        try {
+
+            switch (option) {
+                case "SR": {
+                    view.showingReceipts();
+                    break;
+                }
+                case "AR": {
+                    view.addingReceipt();
+                    break;
+                }
+                case "UR": {
+                    view.updatingReceipt();
+                    break;
+                }
+                case "DR": {
+                    view.deletingReceipt();
+                    break;
+                }
+                case "SC": {
+                    view.showingCommodities();
+                    break;
+                }
+                case "AC": {
+                    view.addingCommodity();
+                    break;
+                }
+                case "UC": {
+                    view.updatingCommodity();
+                    break;
+                }
+                case "DC": {
+                    view.deletingCommodity();
+                    break;
+                }
+                case "EXIT": {
+                    view.exit();
+                    break;
+                }
+                default: {
+                    System.out.println();
+                    System.out.println("Not an option. Try again!");
+                    break;
+                }
             }
-            case "AR": {
-                view.addingReceipt();
-                break;
-            }
-            case "UR": {
-                view.updatingReceipt();
-                break;
-            }
-            case "DR": {
-                view.deletingReceipt();
-                break;
-            }
-            case "SC": {
-                view.showingCommodities();
-                break;
-            }
-            case "AC": {
-                view.addingCommodity();
-                break;
-            }
-            case "UC": {
-                view.updatingCommodity();
-                break;
-            }
-            case "DC": {
-                view.deletingCommodity();
-                break;
-            }
-            case "EXIT": {
-                view.exit();
-                break;
-            } default: {
-                System.out.println();
-                System.out.println("Not an option. Try again!");
-                break;
-            }
+        } catch (Exception ex) {
+            System.out.println("\n//////////////////////////////////");
+            System.out.println("Incorrect argument!");
+            System.out.println("///////////////////////////////////");
         }
     }
 }

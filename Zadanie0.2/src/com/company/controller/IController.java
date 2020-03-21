@@ -10,8 +10,8 @@ public interface IController {
     Receipt modifyReceipt(Long id, String params[]);
     void removeReceipt(long id);
 
-    Commodity addCommodityToReceipt(Long receiptId, String params[]);
-    Commodity modifyCommodityInReceipt(Long receiptId, Long commodityId, String params[]);
+    Commodity addCommodityToReceipt(Long receiptId, String params[]) throws Exception;
+    Commodity modifyCommodityInReceipt(Long receiptId, Long commodityId, String params[]) throws Exception;
     void removeCommodityFromReceipt(Long receiptId, long id);
 
     void selectOption(String option);
