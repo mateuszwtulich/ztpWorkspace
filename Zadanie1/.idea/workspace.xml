@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b35e4fb0-ed52-4c8e-b6c5-099a0b4c3ad5" name="Default Changelist" comment="" />
+    <list default="true" id="beb18285-e017-4380-a006-fd2ffd2023e9" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1ZMu3vhCQo9dSWbqALu2FhKFfYh" />
+  <component name="ProjectId" id="1ZdZcvUxC7tL2tml64hCIE0q9kL" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -33,8 +39,8 @@
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
-      <module name="Zadanie0.1" />
+      <option name="MAIN_CLASS_NAME" value="com.company.Wyswietlacz" />
+      <module name="Zadanie1" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
@@ -53,15 +59,12 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b35e4fb0-ed52-4c8e-b6c5-099a0b4c3ad5" name="Default Changelist" comment="" />
-      <created>1584661088917</created>
+      <changelist id="beb18285-e017-4380-a006-fd2ffd2023e9" name="Default Changelist" comment="" />
+      <created>1585171013331</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1584661088917</updated>
-      <workItem from="1584661091809" duration="219000" />
-      <workItem from="1584827688540" duration="412000" />
-      <workItem from="1584960706326" duration="500000" />
-      <workItem from="1584991667136" duration="699000" />
+      <updated>1585171013331</updated>
+      <workItem from="1585171020375" duration="5081000" />
     </task>
     <servers />
   </component>
@@ -73,9 +76,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
