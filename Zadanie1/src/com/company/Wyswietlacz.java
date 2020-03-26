@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class Wyswietlacz {
 
     public static void main(String[] args) {
@@ -10,30 +12,44 @@ public class Wyswietlacz {
                                     6600, "SoftNet", "umowa zlecenie",
                                         "IPKO", "systemy mobilne", 3);
 
-	    Kontener<Osoba> osobaKontener = new Kontener<>(osoba);
-	    Kontener<Pracownik> pracownikKontener = new Kontener<>(pracownik);
-	    Kontener<Programista> programistaKontener = new Kontener<>(programista);
+	    Kontener<Osoba> osobaKontener = new Kontener<>();
+	    osobaKontener.add(osoba);
+	    osobaKontener.add(pracownik);
+	    osobaKontener.add(programista);
+
+	    Kontener<Pracownik> pracownikKontener = new Kontener<>();
+        pracownikKontener.add(pracownik);
+        pracownikKontener.add(programista);
+
+	    Kontener<Programista> programistaKontener = new Kontener<>();
+        programistaKontener.add(programista);
 
 	    pokazDaneOsoby(osobaKontener);
 //	    pokazDaneOsoby(pracownikKontener);
 	    pokazDanePracownika(pracownikKontener);
 //	    pokazDanePracownika(programistaKontener);
-        pokazDaneProgrmaisty(programistaKontener);
+        pokazDaneProgramisty(programistaKontener);
 
-        osobaKontener.getT().zaktualizuj(34);
-        pracownikKontener.getT().zaktualizuj("umowa o dzieło");
-        programistaKontener.getT().zaktualizuj(4.5);
+        osobaKontener.getAll().forEach(o -> o.zaktualizuj(34));
+        pracownikKontener.getAll().forEach(p -> p.zaktualizuj("umowa o dzieło"));
+        programistaKontener.getAll().forEach(pr -> pr.zaktualizuj(4.5));
     }
 
     public static void pokazDaneOsoby(Kontener<Osoba> kontener){
-        System.out.println(kontener.toString());
+        System.out.println("OSOBY:");
+        kontener.getAll().forEach(osoba -> System.out.println(osoba.getDane(osoba)));
+        System.out.println();
     }
 
     public static void pokazDanePracownika(Kontener<Pracownik> kontener){
-        System.out.println(kontener.toString());
+        System.out.println("PRACOWNICY:");
+        kontener.getAll().forEach(pracownik -> System.out.println(pracownik.getDane(pracownik)));
+        System.out.println();
     }
 
-    public static void pokazDaneProgrmaisty(Kontener<Programista> kontener){
-        System.out.println(kontener.toString());
+    public static void pokazDaneProgramisty(Kontener<Programista> kontener){
+        System.out.println("PROGRAMISCI:");
+        kontener.getAll().forEach(programista -> System.out.println(programista.getDane(programista)));
+        System.out.println();
     }
 }

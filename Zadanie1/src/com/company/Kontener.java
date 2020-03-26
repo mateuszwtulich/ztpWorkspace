@@ -1,19 +1,25 @@
 package com.company;
 
-public class Kontener<T extends Osoba> {
+import java.util.ArrayList;
 
-    private T t;
 
-    public Kontener(T t){
-        this.t = t;
+public class Kontener<T extends Osoba>{
+
+    private ArrayList<T> list = new ArrayList<T>();
+
+    public Kontener(){
     }
 
-    public T getT() {
-        return t;
+    public void add(T t){
+        list.add((T) t);
     }
 
-    @Override
-    public String toString() {
-        return t.toString();
+    public void addAll(ArrayList<T> list){
+        list.forEach(t-> this.list.add(t));
     }
+
+    public ArrayList<T> getAll() {
+        return list;
+    }
+
 }

@@ -16,24 +16,32 @@ public class Osoba {
         this.wiek = wiek;
     }
 
+    public String getDane(Osoba osoba){
+        return "Osoba{" +
+                "pesel='" + pesel + '\'' +
+                ", imie='" + imie + '\'' +
+                ", nazwisko='" + nazwisko + '\'' +
+                ", wiek=" + wiek +
+                '}';
+    }
+
     public void zaktualizuj(int wiek){
         this.wiek = wiek;
-        System.out.println("\nZaktualizowano wiek osoby na " + wiek + " lat!");
+        System.out.println("Zaktualizowano wiek osoby na " + wiek + " lat!\n");
     }
 
     public void zaktualizuj(String nazwisko, String imie, int wiek){
         this.wiek = wiek;
         this.nazwisko = nazwisko;
         this.imie = imie;
-        System.out.println("\nZaktualizowano nazwisko, imie i wiek osoby na !");
+        System.out.println("Zaktualizowano nazwisko, imie i wiek osoby na !\n");
     }
 
     public void zaktualizuj(String nazwisko, String imie){
         this.nazwisko = nazwisko;
         this.imie = imie;
-        System.out.println("\nZaktualizowano nazwisko i imie osoby na !");
+        System.out.println("Zaktualizowano nazwisko i imie osoby na !\n");
     }
-
 
     @Override
     public String toString() {
@@ -42,7 +50,7 @@ public class Osoba {
                 ", imie='" + imie + '\'' +
                 ", nazwisko='" + nazwisko + '\'' +
                 ", wiek=" + wiek +
-                "}";
+                '}';
     }
 
     @Override

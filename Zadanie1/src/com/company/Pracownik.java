@@ -16,22 +16,39 @@ public class Pracownik extends Osoba {
         this.rodzajUmowy = rodzajUmowy;
     }
 
+    public String getDane(Pracownik pracownik){
+        return "Pracownik{" +
+                "wynagordzenie=" + wynagordzenie +
+                ", pracodawca='" + pracodawca + '\'' +
+                ", rodzajUmowy='" + rodzajUmowy + '\'' +
+                ", pesel='" + pesel + '\'' +
+                ", imie='" + imie + '\'' +
+                ", nazwisko='" + nazwisko + '\'' +
+                ", wiek=" + wiek +
+                '}';
+    }
+
+    @Override
+    public String getDane(Osoba osoba) {
+        return super.getDane(osoba);
+    }
+
     public void zaktualizuj(String rodzajUmowy) {
         this.rodzajUmowy = rodzajUmowy;
-        System.out.println("\nZaktualizowano rodzaj umowy pracownika na " + rodzajUmowy + "!\n");
+        System.out.println("Zaktualizowano rodzaj umowy pracownika na " + rodzajUmowy + "!\n");
     }
 
     @Override
     public String toString() {
         return "Pracownik{" +
-                "pesel='" + pesel + '\'' +
+                "wynagordzenie=" + wynagordzenie +
+                ", pracodawca='" + pracodawca + '\'' +
+                ", rodzajUmowy='" + rodzajUmowy + '\'' +
+                ", pesel='" + pesel + '\'' +
                 ", imie='" + imie + '\'' +
                 ", nazwisko='" + nazwisko + '\'' +
                 ", wiek=" + wiek +
-                ", wynagordzenie=" + wynagordzenie +
-                ", pracodawca='" + pracodawca + '\'' +
-                ", rodzajUmowy='" + rodzajUmowy + '\'' +
-                "}";
+                '}';
     }
 
     @Override

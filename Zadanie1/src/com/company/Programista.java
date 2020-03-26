@@ -16,6 +16,31 @@ public class Programista extends Pracownik {
         this.lataDoswiadczenia = lataDoswiadczenia;
     }
 
+    public String getDane(Programista programista){
+        return "Programista{" +
+                "nazwaProjektu='" + nazwaProjektu + '\'' +
+                ", specjalizacja='" + specjalizacja + '\'' +
+                ", lataDoswiadczenia=" + lataDoswiadczenia +
+                ", wynagordzenie=" + wynagordzenie +
+                ", pracodawca='" + pracodawca + '\'' +
+                ", rodzajUmowy='" + rodzajUmowy + '\'' +
+                ", pesel='" + pesel + '\'' +
+                ", imie='" + imie + '\'' +
+                ", nazwisko='" + nazwisko + '\'' +
+                ", wiek=" + wiek +
+                '}';
+    }
+
+    @Override
+    public String getDane(Pracownik pracownik) {
+        return super.getDane(pracownik);
+    }
+
+    @Override
+    public String getDane(Osoba osoba) {
+        return super.getDane(osoba);
+    }
+
     public void zaktualizuj(Double lataDoswiadczenia){
         this.lataDoswiadczenia = lataDoswiadczenia;
         System.out.println("Zaktualizowano lata doswiadczenia pracownika na " + lataDoswiadczenia + "!\n");
@@ -24,17 +49,17 @@ public class Programista extends Pracownik {
     @Override
     public String toString() {
         return "Programista{" +
-                "pesel='" + pesel + '\'' +
-                ", imie='" + imie + '\'' +
-                ", nazwisko='" + nazwisko + '\'' +
-                ", wiek=" + wiek +
+                "nazwaProjektu='" + nazwaProjektu + '\'' +
+                ", specjalizacja='" + specjalizacja + '\'' +
+                ", lataDoswiadczenia=" + lataDoswiadczenia +
                 ", wynagordzenie=" + wynagordzenie +
                 ", pracodawca='" + pracodawca + '\'' +
                 ", rodzajUmowy='" + rodzajUmowy + '\'' +
-                ", nazwaProjektu='" + nazwaProjektu + '\'' +
-                ", specjalizacja='" + specjalizacja + '\'' +
-                ", lataDoswiadczenia=" + lataDoswiadczenia +
-                "}";
+                ", pesel='" + pesel + '\'' +
+                ", imie='" + imie + '\'' +
+                ", nazwisko='" + nazwisko + '\'' +
+                ", wiek=" + wiek +
+                '}';
     }
 
     @Override
