@@ -58,7 +58,7 @@ public class University implements Cloneable, Serializable {
         return name.equals(that.name) &&
                 dateOfEstablishment.equals(that.dateOfEstablishment) &&
                 type.equals(that.type) &&
-                Arrays.equals(faculties, that.faculties);
+                Arrays.deepEquals(faculties, that.faculties);
     }
 
     @Override

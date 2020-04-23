@@ -47,7 +47,7 @@ public class Faculty implements Cloneable, Serializable {
         Faculty faculty = (Faculty) o;
         return name.equals(faculty.name) &&
                 dateOfEstablishment.equals(faculty.dateOfEstablishment) &&
-                Arrays.equals(students, faculty.students);
+                Arrays.deepEquals(students, faculty.students);
     }
 
     @Override
