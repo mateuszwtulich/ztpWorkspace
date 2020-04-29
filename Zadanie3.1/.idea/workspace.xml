@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="38521537-eb39-4bba-936e-b2c85921208d" name="Default Changelist" comment="" />
+    <list default="true" id="c578fc68-a2ba-4463-8096-b327b9af8d77" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,6 +11,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -18,13 +19,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1aaTuszRyMJVxuNtrvOs70Is08g" />
+  <component name="ProjectId" id="1bEBZFjLSh8QeElWd3rCtxRAjuf" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Zadanie1.2" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -38,17 +38,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main (1)">
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Zadanie2.1POM" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.company.Main" />
-      <module name="Zadanie2.1" />
+      <module name="Zadanie3.1" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
@@ -58,7 +51,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -68,16 +60,12 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="38521537-eb39-4bba-936e-b2c85921208d" name="Default Changelist" comment="" />
-      <created>1586972931189</created>
+      <changelist id="c578fc68-a2ba-4463-8096-b327b9af8d77" name="Default Changelist" comment="" />
+      <created>1588187425851</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1586972931189</updated>
-      <workItem from="1586972937190" duration="8880000" />
-      <workItem from="1586990085483" duration="3390000" />
-      <workItem from="1587031836779" duration="2553000" />
-      <workItem from="1587628257477" duration="31000" />
-      <workItem from="1588188185954" duration="1619000" />
+      <updated>1588187425851</updated>
+      <workItem from="1588187463284" duration="15137000" />
     </task>
     <servers />
   </component>
@@ -89,9 +77,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
