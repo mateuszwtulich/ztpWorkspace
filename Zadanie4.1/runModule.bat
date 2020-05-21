@@ -1,0 +1,1 @@
+java --module-path out --module client/com.example.client.Main
