@@ -13,7 +13,7 @@ public class StudentService implements IStudentService {
     private ObjectOutputStream objectOut;
     private FileInputStream fileIn;
     private ObjectInputStream objectIn;
-    static final String filepath= "E:\\repository\\ZTP\\Zadanie4.1\\test";
+    static final String filepath= "test";
 
     private List<Student> getAll(){
         try {
