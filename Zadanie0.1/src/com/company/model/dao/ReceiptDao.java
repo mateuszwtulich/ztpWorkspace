@@ -5,6 +5,7 @@ import com.company.model.entity.Receipt;
 import javax.print.DocFlavor;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,35 +19,31 @@ public class ReceiptDao implements Dao<Receipt> {
 
     @Override
     public Optional<Receipt> get(long id) {
-        ArrayList<Receipt> receiptList = (ArrayList<Receipt>) getAll();
+        ArrayList<Receipt> receiptList = (ArrayList<Receipt>) getAll().get();
         return  receiptList.stream().filter(receipt -> receipt.getId() == id).findFirst();
     }
 
     @Override
-    public List<Receipt> getAll() {
+    public Optional<List<Receipt>> getAll() {
         try {
             fileIn = new FileInputStream(filepath);
             objectIn = new ObjectInputStream(fileIn);
-            ArrayList<Receipt> receiptList = new ArrayList<>();
-            Object obj = null;
 
-            obj = objectIn.readObject();
-            receiptList = (ArrayList<Receipt>) obj;
-
+            Object obj = objectIn.readObject();
+            List<Receipt> receiptList = (ArrayList<Receipt>) obj;
             objectIn.close();
 
-            return receiptList;
+            return Optional.of(receiptList);
 
         } catch (Exception ex) {
             System.out.println();
-            System.out.println("NO RECEIPTS!");
-            return new ArrayList<>();
+            return Optional.of(new ArrayList<>());
         }
     }
 
     @Override
     public Optional<Receipt> save(Receipt receipt) {
-        ArrayList<Receipt> receiptList = (ArrayList<Receipt>) getAll();
+        ArrayList<Receipt> receiptList = (ArrayList<Receipt>) getAll().get();
         receiptList.add(receipt);
 
         try {
@@ -55,7 +52,6 @@ public class ReceiptDao implements Dao<Receipt> {
 
             fileOut = new FileOutputStream(filepath);
             objectOut = new ObjectOutputStream(fileOut);
-
             objectOut.writeObject(receiptList);
 
             objectOut.close();
@@ -68,7 +64,7 @@ public class ReceiptDao implements Dao<Receipt> {
 
     @Override
     public Optional<Receipt> update(Receipt modifiedReceipt) {
-        ArrayList<Receipt> receiptList = (ArrayList<Receipt>) getAll();
+        ArrayList<Receipt> receiptList = (ArrayList<Receipt>) getAll().get();
 
         receiptList.stream().forEach(receipt -> {
             if(receipt.getId() == modifiedReceipt.getId()) {
@@ -84,7 +80,6 @@ public class ReceiptDao implements Dao<Receipt> {
 
             fileOut = new FileOutputStream(filepath);
             objectOut = new ObjectOutputStream(fileOut);
-
             objectOut.writeObject(receiptList);
 
             objectOut.close();
@@ -98,9 +93,10 @@ public class ReceiptDao implements Dao<Receipt> {
 
     @Override
     public void delete(long id) {
-        ArrayList<Receipt> receiptList = (ArrayList<Receipt>) getAll();
+        List<Receipt> receiptList = getAll().get();
 
-        receiptList = (ArrayList<Receipt>) receiptList.stream().filter(receipt -> receipt.getId() != id).collect(Collectors.toList());
+        receiptList = Collections.unmodifiableList(receiptList.stream()
+                .filter(receipt -> receipt.getId() != id).collect(Collectors.toList()));
 
         try{
             File file = new File("test");
@@ -108,7 +104,6 @@ public class ReceiptDao implements Dao<Receipt> {
 
             fileOut = new FileOutputStream(filepath);
             objectOut = new ObjectOutputStream(fileOut);
-
             objectOut.writeObject(receiptList);
 
         }catch (Exception ex) {

@@ -6,6 +6,7 @@ import com.company.model.entity.Receipt;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,8 +26,8 @@ public class CommodityDao implements ICommodityDao<Commodity> {
     }
 
     @Override
-    public List<Commodity> getAll(long receiptId) {
-        return receiptDao.get(receiptId).get().getCommodityList();
+    public Optional<List<Commodity>> getAll(long receiptId) {
+        return Optional.of(Collections.unmodifiableList(receiptDao.get(receiptId).get().getCommodityList()));
     }
 
     @Override
@@ -56,7 +57,7 @@ public class CommodityDao implements ICommodityDao<Commodity> {
     @Override
     public void delete(long receiptId, long id) {
         Receipt receipt = receiptDao.get(receiptId).get();
-        List<Commodity> updatedList = receipt.getCommodityList().stream().filter(commodity -> commodity.getId() != id).collect(Collectors.toList());
+        List<Commodity> updatedList = Collections.unmodifiableList(receipt.getCommodityList().stream().filter(commodity -> commodity.getId() != id).collect(Collectors.toList()));
         receipt.setCommodityList((ArrayList<Commodity>) updatedList);
         receiptDao.update(receipt);
     }

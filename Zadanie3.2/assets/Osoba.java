@@ -1,8 +1,8 @@
 public class Osoba {
 	private String imie;
 	private String nazwisko = "Kowalski";
-	private int czyZdrowy;
-	private boolean wiek = false;
+	private int czyZdrowy = 20;
+	private boolean wiek = true;
 
 	public String getImie() {
 		return imie;
@@ -46,8 +46,8 @@ public class Osoba {
 	public static class OsobaBuilder {
 		private String imie;
 		private String nazwisko = "Kowalski";
-		private int czyZdrowy;
-		private boolean wiek = false;
+		private int czyZdrowy = 20;
+		private boolean wiek = true;
 
 		public OsobaBuilder() {
 		}

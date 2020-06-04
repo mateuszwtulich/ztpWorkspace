@@ -2,8 +2,8 @@ package com.company.service;
 
 import com.company.enumerator.Flag;
 import com.company.enumerator.Type;
-import com.company.model.NameValue;
-import com.company.model.TypePair;
+import com.company.model.NameType;
+import com.company.model.TypeValue;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class Parser {
     private Generator generator;
     private String className;
-    private ArrayList<NameValue> classParams = new ArrayList<>();
+    private ArrayList<NameType> classParams = new ArrayList<>();
     private ArrayList<String> classFlags = new ArrayList<>();
 
     public Parser(Generator generator) {
@@ -57,7 +57,7 @@ public class Parser {
 
     private void detectParams(String[] splited) throws IllegalArgumentException{
         Set<String> names = new HashSet<>();
-        ArrayList<TypePair> values = new ArrayList<>();
+        ArrayList<TypeValue> values = new ArrayList<>();
 
         for(int i = 2; i < splited.length; i++) {
             if(splited[i].startsWith("--")){
@@ -68,12 +68,12 @@ public class Parser {
                 } else {
                     throw new IllegalArgumentException("Parameter name is invalid!");
                 }
-                TypePair typePair = null;
+                TypeValue typeValue = null;
                 for (Type value: Type.values()) {
                     if ( i < splited.length && splited[i].endsWith(",")) {
                         String key = splited[i].substring(0, splited[i].length() - 1);
                         if (key.equals(value.getType())) {
-                            typePair = new TypePair(key, null);
+                            typeValue = new TypeValue(key, null);
                         }
                     } else if (i < splited.length && splited[i].equals(value.getType())) {
                         String key = splited[i++];
@@ -81,17 +81,17 @@ public class Parser {
                             String v = splited[++i];
                             if(v.endsWith(",")){
                                 v = v.substring(0, splited[i].length() - 1);
-                                typePair = new TypePair(key, v);
+                                typeValue = new TypeValue(key, v);
                             } else {
-                                typePair = new TypePair(key, v);
+                                typeValue = new TypeValue(key, v);
                             }
                         } else {
-                            typePair = new TypePair(key, null);
+                            typeValue = new TypeValue(key, null);
                         }
                     }
                 }
-                if (typePair != null) {
-                    values.add(typePair);
+                if (typeValue != null) {
+                    values.add(typeValue);
                 } else {
                     throw new IllegalArgumentException("Type of parameter is invalid!");
                 }
@@ -100,7 +100,7 @@ public class Parser {
 
         if(names.size() == values.size()){
             for (int i = 0; i < names.size(); i++) {
-                this.classParams.add(new NameValue((String) names.toArray()[i], values.get(i)));
+                this.classParams.add(new NameType((String) names.toArray()[i], values.get(i)));
             }
         } else {
         throw new IllegalArgumentException("Incorrect syntax or duplicated field names!");

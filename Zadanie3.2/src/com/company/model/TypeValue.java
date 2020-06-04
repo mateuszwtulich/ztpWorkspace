@@ -2,11 +2,11 @@ package com.company.model;
 
 import java.util.Objects;
 
-public class TypePair {
+public class TypeValue {
     private String name;
     private String value;
 
-    public TypePair(String name, String value) {
+    public TypeValue(String name, String value) {
         this.name = name;
         this.value = value;
     }
@@ -30,8 +30,8 @@ public class TypePair {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof TypePair)) return false;
-        TypePair pair = (TypePair) o;
+        if (!(o instanceof TypeValue)) return false;
+        TypeValue pair = (TypeValue) o;
         return Objects.equals(name, pair.name) &&
                 Objects.equals(value, pair.value);
     }

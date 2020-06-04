@@ -21,7 +21,11 @@ public class Controller {
                 view.displayHelp();
             }
             else if(!string.equals("exit")){
-                manageCommand(string);
+                try {
+                    manageCommand(string);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
             }
         }
     }

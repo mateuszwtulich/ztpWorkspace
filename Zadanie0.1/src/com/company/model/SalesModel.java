@@ -20,22 +20,26 @@ public class SalesModel implements ISalesModel {
 
     @Override
     public Receipt createReceipt(Receipt receipt) {
-        return receiptDao.save(receipt).get();
+        return receiptDao.save(receipt)
+                .orElseThrow(() -> new RuntimeException("Receipt has not been created"));
     }
 
     @Override
     public List<Receipt> getAllReceipts() {
-        return receiptDao.getAll();
+        return receiptDao.getAll()
+                .orElseThrow(() -> new RuntimeException("Receipts have not been loaded"));
     }
 
     @Override
     public Receipt getReceipt(long id) {
-        return receiptDao.get(id).get();
+        return receiptDao.get(id)
+                .orElseThrow(() -> new RuntimeException("Receipt has not been loaded"));
     }
 
     @Override
     public Receipt updateReceipt(Receipt receipt) {
-        return receiptDao.update(receipt).get();
+        return receiptDao.update(receipt)
+                .orElseThrow(() -> new RuntimeException("Receipt could not been updated"));
     }
 
     @Override
@@ -45,22 +49,26 @@ public class SalesModel implements ISalesModel {
 
     @Override
     public Commodity createCommodity(long receiptId, Commodity commodity) {
-        return commodityDao.save(receiptId, commodity).get();
+        return commodityDao.save(receiptId, commodity)
+                .orElseThrow(() -> new RuntimeException("Commodity has not been created"));
     }
 
     @Override
     public List<Commodity> getAllCommodities(long receiptId) {
-        return commodityDao.getAll(receiptId);
+        return commodityDao.getAll(receiptId)
+                .orElseThrow(() -> new RuntimeException("Commodities have not been loaded"));
     }
 
     @Override
     public Commodity getCommodity(long receiptId, long id) {
-        return commodityDao.get(receiptId, id).get();
+        return commodityDao.get(receiptId, id)
+                .orElseThrow(() -> new RuntimeException("Commodity has not been loaded"));
     }
 
     @Override
     public Commodity updateCommodity(long receiptId, Commodity commodity) {
-        return commodityDao.update(receiptId, commodity).get();
+        return commodityDao.update(receiptId, commodity)
+                .orElseThrow(() -> new RuntimeException("Commodity could not been updated"));
     }
 
     @Override

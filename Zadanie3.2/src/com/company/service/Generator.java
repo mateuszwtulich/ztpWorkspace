@@ -1,7 +1,7 @@
 package com.company.service;
 
 import com.company.enumerator.Flag;
-import com.company.model.NameValue;
+import com.company.model.NameType;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ public class Generator {
     private final static Logger logger =
             Logger.getLogger(Generator.class.getName());
 
-    public void generateClassCode(String name, ArrayList<NameValue> params, ArrayList<String> flags){
+    public void generateClassCode(String name, ArrayList<NameType> params, ArrayList<String> flags){
         classString = "public class " + name + " {\n";
         handleParams(params);
         handleFlags(name, params, flags);
@@ -32,52 +32,52 @@ public class Generator {
         }
     }
 
-    private void handleParams(ArrayList<NameValue> params){
-        for (NameValue param : params) {
-            classString += "\tprivate " + param.getTypePair().getName() + " " + param.getName();
-            if(param.getTypePair().getValue() != null){
-                classString += " = " + param.getTypePair().getValue();
+    private void handleParams(ArrayList<NameType> params){
+        for (NameType param : params) {
+            classString += "\tprivate " + param.getTypeValue().getName() + " " + param.getName();
+            if(param.getTypeValue().getValue() != null){
+                classString += " = " + param.getTypeValue().getValue();
             }
             classString += ";\n";
         }
     }
 
-    private void handleFlags(String name, ArrayList<NameValue> params, ArrayList<String> flags){
+    private void handleFlags(String name, ArrayList<NameType> params, ArrayList<String> flags){
         for (String flag: flags) {
             if(flag.equals(Flag.GETTERS.getFlag())){
-                for (NameValue param : params) {
-                    classString += "\n\tpublic " + param.getTypePair().getName() + " get" + param.getName().substring(0,1).toUpperCase()
+                for (NameType param : params) {
+                    classString += "\n\tpublic " + param.getTypeValue().getName() + " get" + param.getName().substring(0,1).toUpperCase()
                             + param.getName().substring(1) + "() {";
                     classString += "\n\t\treturn " + param.getName() + ";\n\t}\n";
                 }
             }
             if(flag.equals(Flag.SETTERS.getFlag())){
-                for (NameValue param : params) {
+                for (NameType param : params) {
                     classString += "\n\tpublic void set" + param.getName().substring(0,1).toUpperCase()
-                            + param.getName().substring(1) + "("+ param.getTypePair().getName() + " " + param.getName() + ") {";
+                            + param.getName().substring(1) + "("+ param.getTypeValue().getName() + " " + param.getName() + ") {";
                     classString += "\n\t\tthis." + param.getName() + " = " + param.getName() + ";\n\t}\n";
                 }
             }
             if(flag.equals(Flag.BUILDER.getFlag())) {
                 classString += "\n\tprivate " + name + "(" + name.substring(0, 1).toUpperCase()
                         + name.substring(1) + "Builder builder) {";
-                for (NameValue param : params) {
+                for (NameType param : params) {
                     classString += "\n\t\tthis." + param.getName() + " = builder." + param.getName() + ";";
                 }
                 classString += "\n\t}";
 
                 classString += "\n\n\tpublic static class " + name + "Builder {\n";
-                for (NameValue param : params) {
-                    classString += "\t\tprivate " + param.getTypePair().getName() + " " + param.getName();
-                    if (param.getTypePair().getValue() != null) {
-                        classString += " = " + param.getTypePair().getValue();
+                for (NameType param : params) {
+                    classString += "\t\tprivate " + param.getTypeValue().getName() + " " + param.getName();
+                    if (param.getTypeValue().getValue() != null) {
+                        classString += " = " + param.getTypeValue().getValue();
                     }
                     classString += ";\n";
                 }
                 classString += "\n\t\tpublic " + name + "Builder() {\n\t\t}";
 
-                for (NameValue param : params) {
-                    classString += "\n\n\t\t" + name + "Builder " + param.getName() + "(" + param.getTypePair().getName() + " " + param.getName() + ") {";
+                for (NameType param : params) {
+                    classString += "\n\n\t\t" + name + "Builder " + param.getName() + "(" + param.getTypeValue().getName() + " " + param.getName() + ") {";
                     classString += "\n\t\t\tthis." + param.getName() + " = " + param.getName() + ";\n\t\t\treturn this;\n\t\t}";
                 }
 
